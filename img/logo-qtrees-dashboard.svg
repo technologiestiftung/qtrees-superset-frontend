@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="510px" height="317px" viewBox="0 0 510 317" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="600px" height="317px" viewBox="0 0 600 317" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <title>Artboard</title>
     <defs>
         <linearGradient x1="0%" y1="47.8791865%" x2="100%" y2="47.8791865%" id="linearGradient-1">
@@ -46,7 +46,7 @@
         </linearGradient>
     </defs>
     <g id="Artboard" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="logo-qtrees" transform="translate(114.000000, 0.000000)" fill-rule="nonzero">
+        <g id="logo-qtrees" transform="translate(146.000000, 0.000000)" fill-rule="nonzero">
             <g id="Group-3">
                 <polygon id="Line" fill="url(#linearGradient-1)" points="132.381672 7.80033086 147.757467 0 167.005837 8.18398286 163.245213 17.0691436 148.114698 10.6354806 134.679371 17.45235 77.7246411 17.45235 77.7246411 7.80077647"></polygon>
                 <polygon id="Line-Copy" fill="url(#linearGradient-2)" points="130.582735 36.7701321 166.003572 31.8609711 182.905986 47.6872682 221.045483 40.1912892 222.898552 49.6624743 179.928945 58.107963 162.780038 42.0507492 131.248027 46.4218962 46.9209142 46.4218962 46.9209142 36.7703227"></polygon>
