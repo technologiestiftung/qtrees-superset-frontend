@@ -6,7 +6,9 @@
 
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
-# {repo-template}
+# QTrees Superset Frontend
+
+In this repository you will find superset frontend customization description of the QTrees Dashboard.
 
 ## TODO (after you generated the repo)
 
@@ -37,33 +39,76 @@ You can use it on GitHub just by commenting on PRs and issues:
 ```plain
 @all-contributors please add @ff6347 for infrastructure, tests and code
 ```
+#
 
-- [ ] Add your project description
-- [ ] Get fancy shields at https://shields.io
+## Prerequisites 
 
-## Prerequisites
-
-tbd...
+Install the backend described here: https://github.com/technologiestiftung/qtrees-superset
 
 ## Installation
 
-tbd...
+The QTrees dashboard uses a Deck.gl Scatterplot for "Baumkarte" that uses custom JS. 
+This is the configuration:
 
-## Usage or Deployment
+![deck.gl configuration](./img/deck-gl.png)
 
-tbd...
+In the **Advanced** section, the following settings are configured:
 
-## Development
+#### Extra data for JS
+The columns that have been added are:
+- `art_dtsch`
+- `standalter`
+- `nowcast_value`
+- `forecast_value`
+- `id`
 
-tbd...
 
-## Tests
+#### JavaScript data interceptor
+An interceptor has been added to make the colors of the displayed point a gradient 
+related to the "saugspannung" rather than the default "random" color set. 
+This is the snippet:
 
-tbd...
+```JavaScript
+(dataArray) => {
+      return dataArray.map((dataEntry) => {
+            if (!dataEntry.extraProps.nowcast_value) {
+                  dataEntry.color = [229, 231, 235, 255]
+                  return dataEntry;
+            }
+
+            if (dataEntry.extraProps.nowcast_value < 33) {
+                  dataEntry.color = [112, 187, 137, 255];
+                  return dataEntry;
+            }
+
+            if (dataEntry.extraProps.nowcast_value < 81) {
+                  dataEntry.color = [224, 215, 126, 255];
+                  return dataEntry;
+            }
+
+            dataEntry.color = [254, 172, 118, 255];
+            return dataEntry;
+      })
+}
+```
+
+#### JavaScript tooltip generator
+The tooltip has been adjusted to fill it with more useful information, 
+such as the tree species, its age and its suction tension. 
+This is the snippet:
+
+```JavaScript
+(dataEntry) => {
+      const saugspannungLabelNow = dataEntry.object.extraProps.nowcast_value ? `${dataEntry.object.extraProps.nowcast_value} kPa` : '';
+      const saugspannungLabelForecast = dataEntry.object.extraProps.forecast_value ? `${dataEntry.object.extraProps.forecast_value} kPa` : '';
+      return `${dataEntry.object.extraProps.art_dtsch}, ${dataEntry.object.extraProps.standalter} Jahre <br> Saugspannung (heute): ${saugspannungLabelNow} <br> Sauspannung (14 Tage): ${saugspannungLabelForecast} <br> Id: ${dataEntry.object.extraProps.id}`;
+}
+
+```
 
 ## Contributing
 
-Before you create a pull request, write an issue so we can discuss your changes.
+Before you create a pull request, write an issue, so we can discuss your changes.
 
 ## Contributors
 
@@ -119,3 +164,4 @@ Illustrations by {MARIA_MUSTERFRAU}, all rights reserved.
 </table>
 
 ## Related Projects
+[QTrees Superset Backend](https://github.com/technologiestiftung/qtrees-superset)
